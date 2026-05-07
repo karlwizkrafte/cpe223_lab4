@@ -102,7 +102,7 @@ public class App extends Application {
         plus.setOnAction(e -> {
             Double result = KVCalCore.add(inField1, inField2);
             if (Double.isNaN(result)) {
-                resultLabel.setText("ERROR");
+                resultLabel.setText("INVALID INPUT");
                 errorAnim.stop();   
                 errorAnim.playFromStart();
             } else {
@@ -115,7 +115,7 @@ public class App extends Application {
         minus.setOnAction(e -> {
             Double result = KVCalCore.minus(inField1, inField2);
             if (Double.isNaN(result)) {
-                resultLabel.setText("ERROR");
+                resultLabel.setText("INVALID INPUT");
                 errorAnim.stop();   
                 errorAnim.playFromStart();
             } else {
@@ -128,7 +128,7 @@ public class App extends Application {
         multiply.setOnAction(e -> {
             Double result = KVCalCore.multiply(inField1, inField2);
             if (Double.isNaN(result)) {
-                resultLabel.setText("ERROR");
+                resultLabel.setText("INVALID INPUT");
                 errorAnim.stop();   
                 errorAnim.playFromStart();
             } else {
@@ -141,7 +141,7 @@ public class App extends Application {
         divide.setOnAction(e -> {
             Double result = KVCalCore.divide(inField1, inField2);
             if (Double.isNaN(result)) {
-                resultLabel.setText("ERROR");
+                resultLabel.setText("INVALID INPUT");
                 errorAnim.stop();   
                 errorAnim.playFromStart();
             } else {
