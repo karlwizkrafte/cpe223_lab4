@@ -26,21 +26,20 @@ import cpe223.karlvince.lab4.util.Toolbox;
 public class App extends Application {
 
     private static Scene scene;
-
     @Override
     public void start(Stage stage) throws IOException {
 
-        BorderPane root = new BorderPane();
-        TextField inField1 = new TextField();
-        Label resultLabel = new Label("0.0");
-        TextField inField2 = new TextField();
+        BorderPane root         = new BorderPane();
+        TextField inField1      = new TextField();
+        Label resultLabel       = new Label("0.0");
+        TextField inField2      = new TextField();
 
         // Set text field properties
         inField1.setPromptText("Number 1");
         inField2.setPromptText("Number 2");
 
         // TextField Container
-        HBox tfContainer = new HBox();
+        HBox tfContainer        = new HBox();
         tfContainer.setSpacing(10);
         tfContainer.setPadding(new Insets(10));
         tfContainer.getChildren().addAll(inField1, inField2);
@@ -48,35 +47,35 @@ public class App extends Application {
         HBox.setHgrow(inField2, Priority.ALWAYS);
 
         // Button
-        HBox btnContainer = new HBox();
+        HBox btnContainer       = new HBox();
         btnContainer.setSpacing(10);
         btnContainer.setPadding(new Insets(10));
         btnContainer.setAlignment(Pos.CENTER);
 
-        Button plus = new Button("+");
-        Button minus = new Button("-");
-        Button multiply = new Button("*");
-        Button divide = new Button("/");
+        Button plus             = new Button("+");
+        Button minus            = new Button("-");
+        Button multiply         = new Button("*");
+        Button divide           = new Button("/");
 
         // Increase button size
         double unifiedBtnSze = 40.0;
-        plus.setMinHeight(unifiedBtnSze);
-        plus.setMinWidth(unifiedBtnSze);
-        minus.setMinHeight(unifiedBtnSze);
-        minus.setMinWidth(unifiedBtnSze);
-        multiply.setMinHeight(unifiedBtnSze);
-        multiply.setMinWidth(unifiedBtnSze);
-        divide.setMinHeight(unifiedBtnSze);
-        divide.setMinWidth(unifiedBtnSze);
+        plus.setMinHeight       (unifiedBtnSze);
+        plus.setMinWidth        (unifiedBtnSze);
+        minus.setMinHeight      (unifiedBtnSze);
+        minus.setMinWidth       (unifiedBtnSze);
+        multiply.setMinHeight   (unifiedBtnSze);
+        multiply.setMinWidth    (unifiedBtnSze);
+        divide.setMinHeight     (unifiedBtnSze);
+        divide.setMinWidth      (unifiedBtnSze);
 
-        // Interaction Container
+        // Interaction Container 
         VBox interContainer = new VBox();
         interContainer.getChildren().addAll(tfContainer, btnContainer);
-
-        HBox.setHgrow(plus, Priority.ALWAYS);
-        HBox.setHgrow(minus, Priority.ALWAYS);
+        
+        HBox.setHgrow(plus,     Priority.ALWAYS);
+        HBox.setHgrow(minus,    Priority.ALWAYS);
         HBox.setHgrow(multiply, Priority.ALWAYS);
-        HBox.setHgrow(divide, Priority.ALWAYS);
+        HBox.setHgrow(divide,   Priority.ALWAYS);
 
         btnContainer.getChildren().addAll(plus, minus, multiply, divide);
 
@@ -88,23 +87,27 @@ public class App extends Application {
 
         // Timeline [Test]
         Timeline errorAnim = new Timeline(
-                new KeyFrame(Duration.ZERO,
-                        new KeyValue(resultLabel.textFillProperty(), Color.WHITE)),
-                new KeyFrame(Duration.millis(200),
-                        new KeyValue(resultLabel.textFillProperty(), Color.web("#ff2121"))),
-                new KeyFrame(Duration.millis(600),
-                        new KeyValue(resultLabel.textFillProperty(), Color.WHITE)));
+            new KeyFrame(Duration.ZERO,
+                new KeyValue(resultLabel.textFillProperty(), Color.WHITE)
+            ),
+            new KeyFrame(Duration.millis(200),
+                new KeyValue(resultLabel.textFillProperty(), Color.web("#ff2121"))
+            ),
+            new KeyFrame(Duration.millis(600),
+                new KeyValue(resultLabel.textFillProperty(), Color.WHITE)
+            )
+        );
 
         // Actions
         plus.setOnAction(e -> {
             Double result = KVCalCore.add(inField1, inField2);
             if (Double.isNaN(result)) {
-                resultLabel.setText("ERROR: INVALID INPUT");
-                errorAnim.stop();
+                resultLabel.setText("ERROR");
+                errorAnim.stop();   
                 errorAnim.playFromStart();
             } else {
                 errorAnim.stop();
-                resultLabel.setTextFill(Color.WHITE);
+                resultLabel.setTextFill(Color.WHITE); 
                 resultLabel.setText(Double.toString(result));
             }
         });
@@ -112,12 +115,12 @@ public class App extends Application {
         minus.setOnAction(e -> {
             Double result = KVCalCore.minus(inField1, inField2);
             if (Double.isNaN(result)) {
-                resultLabel.setText("ERROR: INVALID INPUT");
-                errorAnim.stop();
+                resultLabel.setText("ERROR");
+                errorAnim.stop();   
                 errorAnim.playFromStart();
             } else {
                 errorAnim.stop();
-                resultLabel.setTextFill(Color.WHITE);
+                resultLabel.setTextFill(Color.WHITE); 
                 resultLabel.setText(Double.toString(result));
             }
         });
@@ -125,12 +128,12 @@ public class App extends Application {
         multiply.setOnAction(e -> {
             Double result = KVCalCore.multiply(inField1, inField2);
             if (Double.isNaN(result)) {
-                resultLabel.setText("ERROR: INVALID INPUT");
-                errorAnim.stop();
+                resultLabel.setText("ERROR");
+                errorAnim.stop();   
                 errorAnim.playFromStart();
             } else {
                 errorAnim.stop();
-                resultLabel.setTextFill(Color.WHITE);
+                resultLabel.setTextFill(Color.WHITE); 
                 resultLabel.setText(Double.toString(result));
             }
         });
@@ -138,12 +141,12 @@ public class App extends Application {
         divide.setOnAction(e -> {
             Double result = KVCalCore.divide(inField1, inField2);
             if (Double.isNaN(result)) {
-                resultLabel.setText("ERROR: INVALID INPUT");
-                errorAnim.stop();
+                resultLabel.setText("ERROR");
+                errorAnim.stop();   
                 errorAnim.playFromStart();
             } else {
                 errorAnim.stop();
-                resultLabel.setTextFill(Color.WHITE);
+                resultLabel.setTextFill(Color.WHITE); 
                 resultLabel.setText(Double.toString(result));
             }
         });
@@ -151,7 +154,7 @@ public class App extends Application {
         // Scene
         double SCX = Toolbox.Dynamic.screenX(45);
         double SCY = Toolbox.Dynamic.screenY(35);
-
+        
         scene = new Scene(root, SCX, SCY);
         scene.getStylesheets().add(Toolbox.respath("/cpe223/karlvince/lab4/styles.css"));
 
